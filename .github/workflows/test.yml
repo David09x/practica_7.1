@@ -1,0 +1,28 @@
+name: Granja_Animales_Node.js_CI # Nom descriptiu per al nostre workflow
+
+on: # Definición de eventos desencadenantes
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs: # Definición de trabajos
+  build:
+    runs-on: ubuntu-latest # Configuración del entorno de ejecución
+
+    steps: # Pasos para el trabajo
+      - name: Checkout repository # Checkout del repositorio
+        uses: actions/checkout@v2
+
+      - name: Use Node.js # Configurar el entorno Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x' # Versión de Node.js corregida
+
+      - name: Run Yarn # Ejecutar Yarn
+        run: yarn
+
+      - name: Run tests # Ejecutar pruebas
+        run: yarn test
